@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adventure Quest - Factor Graph RPG</title>
+  <link rel="stylesheet" href="src/styles/game.css">
+</head>
+<body>
+  <canvas id="ashCanvas" aria-hidden="true"></canvas>
+  <div class="app">
+    <header class="topbar frame">
+      <div class="brand">
+        <h1>Adventure Quest</h1>
+        <span class="subtitle">Factor Graph Narrative RPG</span>
+      </div>
+      <div class="top-meta" aria-live="polite">
+        <span class="chip">Turn <strong id="turnLabel">1/12</strong></span>
+        <span class="chip">Act <strong id="actLabel">I</strong></span>
+        <span class="chip" id="worldEventChip">The Crossroads Bell Rings</span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel frame graph-panel open" id="graphPanel" aria-label="Live factor graph">
+        <div class="panel-head">
+          <h2 class="panel-title">Belief Engine</h2>
+          <button class="panel-action" id="graphToggle" type="button" aria-expanded="true">Graph</button>
+        </div>
+        <div class="graph-body">
+          <div class="graph-canvas-shell">
+            <canvas id="graphCanvas"></canvas>
+            <div class="graph-legend" aria-hidden="true">
+              <span><i class="legend-dot" style="color: var(--teal-bright)"></i>variable belief</span>
+              <span><i class="legend-dot" style="color: var(--arcane-bright)"></i>factor node</span>
+              <span><i class="legend-dot" style="color: var(--ember-bright)"></i>active message</span>
+              <span><i class="legend-dot" style="color: var(--blood-bright)"></i>rising chaos</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel frame narrative-panel" aria-label="Narrative">
+        <div class="panel-head">
+          <h2 class="panel-title" id="chapterLabel">Crossroads Village</h2>
+          <span class="scene-tag" id="sceneTagLabel">Dialogue</span>
+        </div>
+        <div class="narrative-scroll" id="narrativeScroll">
+          <div class="scene-strip" id="sceneStrip">
+            <div class="scene-title-row">
+              <span class="scene-name" id="sceneName">Crossroads Village</span>
+              <span class="scene-tag" id="sceneSignal">Signal Stable</span>
+            </div>
+          </div>
+          <div class="character-stage">
+            <div class="dialogue-bubble" id="dialogueBubble">
+              <div class="speaker-name" id="speakerName">Aldric</div>
+              <div class="speaker-line" id="speakerLine">The old road has begun listening again. Choose carefully, wanderer.</div>
+            </div>
+            <div class="character-cast" id="characterCast" aria-hidden="true"></div>
+          </div>
+          <article class="story-block">
+            <p class="narrative-text" id="narrativeText"></p>
+          </article>
+          <div class="choice-area" id="choiceArea" aria-label="Choices"></div>
+        </div>
+      </section>
+
+      <aside class="panel frame stats-panel" aria-label="Player state">
+        <div class="panel-head">
+          <h2 class="panel-title">Arcane Measures</h2>
+          <span class="scene-tag">Local Oracle</span>
+        </div>
+        <div class="stats-body">
+          <div id="statsList"></div>
+
+          <section class="sidebar-section">
+            <h3 class="sidebar-title">Inventory</h3>
+            <ul class="inventory-list" id="inventoryList"></ul>
+          </section>
+
+          <section class="sidebar-section">
+            <h3 class="sidebar-title">Turn Log</h3>
+            <ul class="log-list" id="logList"></ul>
+          </section>
+
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footerbar frame">
+      <div class="footer-meta" id="factionMeta">
+        <span>Freeholds 50</span>
+        <span>Crown 50</span>
+        <span>Ashen Court 50</span>
+      </div>
+      <div class="button-row">
+        <button type="button" id="muteButton">Sound On</button>
+        <button type="button" id="fullscreenButton">Fullscreen</button>
+        <button type="button" id="restartButton">Restart</button>
+      </div>
+    </footer>
+  </div>
+
+  <div class="burn-overlay" id="burnOverlay"></div>
+
+  <section class="ending-screen" id="endingScreen" aria-modal="true" role="dialog" aria-label="Ending">
+    <div class="ending-card frame">
+      <svg class="ending-emblem" id="endingEmblem" viewBox="0 0 120 120" aria-hidden="true"></svg>
+      <h2 class="ending-title" id="endingTitle">The Gray Wanderer</h2>
+      <p class="ending-copy" id="endingCopy"></p>
+      <div class="ending-bars" id="endingBars"></div>
+      <div class="ending-actions">
+        <button class="primary-button" id="playAgainButton" type="button">Play Again</button>
+        <button class="primary-button" id="copyEndingButton" type="button">Copy Ending</button>
+      </div>
+    </div>
+  </section>
+  <script src="src/main.js" defer></script>
+</body>
+</html>
